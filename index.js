@@ -20,3 +20,10 @@ app.use('/api', router);
 app.listen(PORT, () => {
   console.log(`✅ Server is running on http://localhost:${PORT}`);
 });
+
+
+const farmRoutes = require("./routes/farm.routes");
+const farmEnumRoutes = require("./routes/farm.enums");
+
+app.use("/api/farms", farmRoutes);
+app.use("/api/farm-options", farmEnumRoutes);
