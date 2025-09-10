@@ -4,3 +4,4 @@ const usersInstance = new UsersDao();
 module.exports = {
   getAllUsers: (req, res, next) => usersInstance.getAllUsers(req, res, next)
 };
+
