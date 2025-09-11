@@ -1,3 +1,12 @@
+const FarmDao = require("../dao/farm.dao");
+const farmInstances = new FarmDao();
+
+module.exports = {
+  getAllFarms: (req, res, next) => farmInstances.getAllFarms(req, res, next),
+  getDropdowns: (req, res, next) => farmInstances.getDropdowns(req, res, next),
+};
+
+/*
 // controllers/farm.controller.js
 const {
     createFarm,
@@ -73,4 +82,4 @@ const {
     editFarm,
     removeFarm
   };
-  
+  */
