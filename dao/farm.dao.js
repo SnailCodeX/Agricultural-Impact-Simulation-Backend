@@ -1,35 +1,42 @@
-// dao/farm.dao.js
-const Farm = require("../models/farm.model");
+const Farm = require("../models/farm.models");
 
-// Create a new farm
-async function createFarm(farmData) {
-  return Farm.create(farmData);
+class FarmDao {
+  async getAllFarms(req, res, next) {
+    try {
+      const farms = await Farm.find();
+      if (!farms) {
+        res.json({
+          success: false,
+          data: [],
+          message: "data not found",
+        });
+      }
+      res.status(200).json({
+        success: true,
+        data: farms,
+        message: "data received successfully",
+      });
+    } catch (err) {
+      return next(err);
+    }
+  }
+  async getDropdowns(req, res, next) {
+    try {
+      const getEnumValues = (path) => Farm.schema.path(path).enumValues || [];
+
+      res.json({
+        farmSize: getEnumValues("farmSize"),
+        mainCrop: getEnumValues("mainCrop"),
+        farmingPractice: getEnumValues("farmingPractice"),
+        irrigation: getEnumValues("irrigation"),
+        method: getEnumValues("method"),
+        technologyLevel: getEnumValues("technologyLevel"),
+        biology: getEnumValues("biology"),
+        inventionLevel: getEnumValues("inventionLevel"),
+      });
+    } catch (err) {
+      next(err);
+    }
+  }
 }
-
-// Get all farms
-async function getAllFarms() {
-  return Farm.find({});
-}
-
-// Get a single farm by ID
-async function getFarmById(id) {
-  return Farm.findById(id);
-}
-
-// Update farm by ID
-async function updateFarm(id, updateData) {
-  return Farm.findByIdAndUpdate(id, updateData, { new: true, runValidators: true });
-}
-
-// Delete farm by ID
-async function deleteFarm(id) {
-  return Farm.findByIdAndDelete(id);
-}
-
-module.exports = {
-  createFarm,
-  getAllFarms,
-  getFarmById,
-  updateFarm,
-  deleteFarm
-};
+module.exports = FarmDao;
