@@ -16,13 +16,15 @@ router.post('/roles/addRole', rolesControllers.addRole);
 // FARM ROUTES
 router.get('/farm/getAllFarms', farmControllers.getAllFarms);
 router.get('/farm/insertData', farmControllers.insertData);
+router.get('/farm/getFarmById', farmControllers.getFarmById);
 
 // FARMER ROUTES
 router.get('/farmer/getAllFarmers', farmerControllers.getAllFarmers);
+router.get('/farmer/getFarmerById', farmerControllers.getFarmerById);
 
 // SOIL ROUTES
 router.get('/soil/getAllSoils', soilControllers.getAllSoils);
-//router.get('/farm/getSoilById', farmControllers.getSoil)
+router.get('/soil/getSoilById', soilControllers.getSoilById);
 
 // CLIMATE ROUTES
 router.get('/climate/getAllClimate', climateControllers.getAllClimate);

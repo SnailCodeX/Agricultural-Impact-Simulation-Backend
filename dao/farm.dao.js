@@ -39,6 +39,7 @@ class FarmDao {
 
       const { soilType, soilPH } = req.body;
       const { climateType, season } = req.body;
+      console.log("---------", req.body, "-----------------");
 
       const newFarmer = new Farmer({
         farmerName,
@@ -48,34 +49,30 @@ class FarmDao {
       });
       const farmerData = await newFarmer.save();
 
-      /* soil climate .... search id integration*/
+      const newSoil = new Soil({
+        soilType,
+        soilPH,
+      });
+      const soilData = await newSoil.save();
+
+      const newClimate = new Climate({
+        climateType,
+        season,
+      });
+      const climateData = await newClimate.save();
+
+      const newFarm = new Farm({
+        farmer: farmerData._id,
+        soil: soilData._id,
+        climate: climateData._id,
+        // ...other fields
+      });
+      const farmData = await newFarm.save();  
+
     } catch (err) {
       return next(err);
     }
   }
-  /*
-  async getSoilById(req, res, next) {
-    try {
-      const soil = await Soil.findById(req.params.id);
-      if (!soil) {
-        return res.status(404).json({ message: "Soil not found" });
-      }
-      res.json(soil);
-    } catch (err) {
-      next(err);
-    }
-  }
-  async getClimateById(req, res, next) {
-    try {
-      const climate = await Climate.findById(req.params.id);
-      if (!climate) {
-        return res.status(404).json({ message: "Climate not found" });
-      }
-      res.json(climate);
-    } catch (err) {
-      next(err);
-    }
-  }*/
 }
 
 module.exports = FarmDao;

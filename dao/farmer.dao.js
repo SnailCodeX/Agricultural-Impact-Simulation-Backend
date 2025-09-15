@@ -20,6 +20,16 @@ class FarmerDao {
       return next(err);
     }
   }
-  
+  async getFarmerById(req, res, next) {
+    try {
+      const farmer = await Farmer.findById(req.params.id);
+      if (!farmer) {
+        return res.status(404).json({ message: "Farmer not found" });
+      }
+      res.json(farmer);
+    } catch (err) {
+      next(err);
+    }
+  }
 }
 module.exports = FarmerDao;

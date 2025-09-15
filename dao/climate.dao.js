@@ -20,5 +20,16 @@ class ClimateDao {
       return next(err);
     }
   }
+  async getClimateById(req, res, next) {
+    try {
+      const climate = await Climate.findById(req.params.id);
+      if (!climate) {
+        return res.status(404).json({ message: "Climate not found" });
+      }
+      res.json(climate);
+    } catch (err) {
+      next(err);
+    }
+  }
 }
 module.exports = ClimateDao;
