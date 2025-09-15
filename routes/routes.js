@@ -9,6 +9,7 @@ const climateControllers = require('../controllers/climate.controllers.js')
 
 // USERS ROUTES
 router.get('/users/getAllUsers', usersControllers.getAllUsers);
+router.post('/users/createUser', usersControllers.createUser);
 
 // ROLES ROUTES
 router.post('/roles/addRole', rolesControllers.addRole);
