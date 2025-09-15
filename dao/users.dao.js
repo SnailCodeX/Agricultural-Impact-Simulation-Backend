@@ -1,8 +1,7 @@
 const User = require("../models/users.models");
 const Role = require("../models/roles.models");
-const { response } = require("express");
-//const bcrypt = require('bcryptjs');
-//const d = require('jsonwebtoken');
+const SALT_ROUNDS = 10;
+
 
 class UsersDao {
   async getAllUsers(req, res, next) {
@@ -33,7 +32,60 @@ class UsersDao {
     } catch (error) {
       next(error);
     }
+  };
+
+  async createUser(req, res, next) {
+  try {
+    const { firstName, lastName, email, password } = req.body;
+
+    const userRole = await Role.findOne({ roleType: "user", active: true });
+    if (!userRole) {
+      return res.json({
+        success: false,
+        data: [],
+        message: 'Default "user" role not found in the database',
+      });
+    }
+
+    const emailExists = await User.findOne({ email });
+    if (emailExists) {
+      return res.json({
+        success: false,
+        data: [],
+        message: "Email already in use",
+      });
+    }
+
+    const hashedPassword = await bcrypt.hash(password, SALT_ROUNDS);
+
+    const newUser = new User({
+      firstName,
+      lastName,
+      email,
+      password: hashedPassword,
+      role: userRole._id,
+    });
+
+    const savedUser = await newUser.save();
+
+    return res.status(201).json({
+      success: true,
+      data: {
+        _id: savedUser._id,
+        firstName: savedUser.firstName,
+        lastName: savedUser.lastName,
+        email: savedUser.email,
+        role: userRole.roleType,
+        active: savedUser.active,
+        createdAt: savedUser.createdAt,
+        updatedAt: savedUser.updatedAt,
+      },
+      message: "User created successfully",
+    });
+  } catch (error) {
+    next(error);
   }
+}
 }
 
 module.exports = UsersDao;
