@@ -20,5 +20,16 @@ class SoilDao {
       return next(err);
     }
   }
+    async getSoilById(req, res, next) {
+    try {
+      const soil = await Soil.findById(req.params.id);
+      if (!soil) {
+        return res.status(404).json({ message: "Soil not found" });
+      }
+      res.json(soil);
+    } catch (err) {
+      next(err);
+    }
+  }
 }
 module.exports = SoilDao;

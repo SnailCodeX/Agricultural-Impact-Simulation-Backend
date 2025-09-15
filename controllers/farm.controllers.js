@@ -4,6 +4,7 @@ const farmInstances = new FarmDao();
 module.exports = {
   getAllFarms: (req, res, next) => farmInstances.getAllFarms(req, res, next),
   insertData: (req, res, next) => farmInstances.insertData(req, res, next),
+  getFarmById: (req, res, next) => farmInstances.getFarmById(req, res, next),
 };
 
 /*
