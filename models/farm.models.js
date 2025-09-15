@@ -2,6 +2,7 @@
 const mongoose = require("mongoose");
 
 const FarmSchema = new mongoose.Schema({
+  farmer: { type: mongoose.Schema.Types.ObjectId, ref: "Farmer", required: true },
   // Farm details (now required)
   farmSize: {
     type: String,
@@ -57,3 +58,5 @@ const FarmSchema = new mongoose.Schema({
 });
 
 module.exports = mongoose.model("Farm", FarmSchema);
+
+{farmSize, mainCrop, farmingPractice, irrigation, method, technologyLevel, biology, inventionLevel}

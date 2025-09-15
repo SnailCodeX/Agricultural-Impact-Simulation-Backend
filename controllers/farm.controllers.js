@@ -3,7 +3,6 @@ const farmInstances = new FarmDao();
 
 module.exports = {
   getAllFarms: (req, res, next) => farmInstances.getAllFarms(req, res, next),
-  getDropdowns: (req, res, next) => farmInstances.getDropdowns(req, res, next),
 };
 
 /*
