@@ -4,7 +4,6 @@ class FarmerDao {
   async getAllFarmers(req, res, next) {
     try {
       const farmers = await Farmer.find();
-      console.log('-------------',farmers,'-------------');
       if (!farmers) {
         res.json({
           success: false,
