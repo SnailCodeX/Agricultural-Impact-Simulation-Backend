@@ -7,8 +7,6 @@ class FarmDao {
   async getAllFarms(req, res, next) {
     try {
       const farms = await Farm.find();
-      console.log("-------------", farms, "-------------");
-
       if (!farms) {
         res.json({
           success: false,
@@ -55,6 +53,7 @@ class FarmDao {
       return next(err);
     }
   }
+  /*
   async getSoilById(req, res, next) {
     try {
       const soil = await Soil.findById(req.params.id);
@@ -76,7 +75,7 @@ class FarmDao {
     } catch (err) {
       next(err);
     }
-  }
+  }*/
 }
 
 module.exports = FarmDao;

@@ -58,5 +58,3 @@ const FarmSchema = new mongoose.Schema({
 });
 
 module.exports = mongoose.model("Farm", FarmSchema);
-
-{farmSize, mainCrop, farmingPractice, irrigation, method, technologyLevel, biology, inventionLevel}
