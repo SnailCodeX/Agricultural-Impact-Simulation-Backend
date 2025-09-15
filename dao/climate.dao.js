@@ -22,4 +22,3 @@ class ClimateDao {
   }
 }
 module.exports = ClimateDao;
-

@@ -23,7 +23,6 @@ app.listen(PORT, () => {
 
 /*
 const farmRoutes = require("./routes/farm.routes");
-const farmEnumRoutes = require("./routes/farm.enums");
 
 app.use("/api/farms", farmRoutes);
 app.use("/api/farm-options", farmEnumRoutes);
