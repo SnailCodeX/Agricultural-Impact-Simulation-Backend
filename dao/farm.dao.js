@@ -25,7 +25,7 @@ class FarmDao {
   }
   async insertData(req, res, next) {
     try {
-      const { farmName, phoneNumber, location, experience } = req.body;
+      const { farmerName, phoneNumber, location, experience } = req.body;
       const {
         farmSize,
         mainCrop,
@@ -41,7 +41,7 @@ class FarmDao {
       const { climateType, season } = req.body;
 
       const newFarmer = new Farmer({
-        farmName,
+        farmerName,
         phoneNumber,
         location,
         experience,
