@@ -1,6 +1,7 @@
 const User = require("../models/users.models");
 const Role = require("../models/roles.models");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 const SALT_ROUNDS = 10;
 
