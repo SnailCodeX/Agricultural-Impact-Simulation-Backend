@@ -92,9 +92,9 @@ class UsersDao {
 
   async login(req, res, next) {
     try {
-      const { email, password } = req.body;
-
+      const { email, password } = req.body;      
       const user = await User.findOne({ email }).populate("role");
+      
       if (!user) {
         return res.json({
           success: false,
