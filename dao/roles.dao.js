@@ -27,6 +27,20 @@ class RolesDao {
     } catch (error) {
       return next(error);
     }
-  }
+  };
+
+  async getAllRoles(req, res, next) {
+    try {
+      const allRoles = await roles.find();
+      return res.status(200).json({
+        success: true,
+        data: allRoles,
+        message: "Roles retrieved successfully",
+      });
+    } catch (error) {
+      return next(error);
+    }
+  };
+  
 }
 module.exports = RolesDao;
