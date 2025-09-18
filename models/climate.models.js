@@ -15,4 +15,3 @@ const ClimateSchema = new mongoose.Schema({
 });
 
 module.exports = mongoose.model("ClimateParameter", ClimateSchema);
-
