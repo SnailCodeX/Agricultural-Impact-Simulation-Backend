@@ -63,12 +63,27 @@ class FarmDao {
 
       const newFarm = new Farm({
         farmer: farmerData._id,
-        soil: soilData._id,
-        climate: climateData._id,
-        // ...other fields
+        farmSize,
+        mainCrop,
+        farmingPractice,
+        irrigation,
+        method,
+        technologyLevel,
+        biology,
+        inventionLevel,
       });
-      const farmData = await newFarm.save();  
+      const farmData = await newFarm.save();
 
+      return res.status(201).json({
+        success: true,
+        data: {
+          farmer: farmerData,
+          farm: farmData,
+          soil: soilData,
+          climate: climateData,
+        },
+        message: "Farm data inserted successfully",
+      });
     } catch (err) {
       return next(err);
     }
