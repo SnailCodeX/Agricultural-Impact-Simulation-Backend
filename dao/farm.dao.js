@@ -22,7 +22,7 @@ class FarmDao {
     } catch (err) {
       return next(err);
     }
-  }
+  };
   async insertData(req, res, next) {
     try {
       const { farmerName, phoneNumber, location, experience } = req.body;
@@ -39,7 +39,6 @@ class FarmDao {
 
       const { soilType, soilPH } = req.body;
       const { climateType, season } = req.body;
-      console.log("---------", req.body, "-----------------");
 
       const newFarmer = new Farmer({
         farmerName,
@@ -87,7 +86,7 @@ class FarmDao {
     } catch (err) {
       return next(err);
     }
-  }
+  };
 }
 
 module.exports = FarmDao;
